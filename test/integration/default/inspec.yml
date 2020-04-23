@@ -1,0 +1,7 @@
+name: os-hardening-integration-tests
+version: 1.0.0
+depends:
+  - name: linux-baseline
+    url: https://github.com/dev-sec/linux-baseline
+  - name: nginx-baseline
+    url: https://github.com/dev-sec/nginx-baseline

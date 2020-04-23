@@ -1,0 +1,57 @@
+# the memory of <%= node['fqdn'] %> = "<%= node['memory']['total'] %>"[0...-2]
+# the innodb_buffer_pool_size = <%= @innodb_p_size %> MB
+[mysqld]
+# General Settings
+datadir = <%= @datadir %>
+symbolic-links = <%= @s_lnk %>
+performance_schema = <%= @perf_schema %>
+max_connections = <%= @max_conn %>
+
+# Logs section
+log-error = <%= @log_error %>
+slow-query-log = <%= @sqry_log %>
+slow-query-log-file = <%= @sqry_log_file %>
+long_query_time = <%= @long_query_time %>
+
+# cache
+query_cache_size = <%= @query_size %>M
+query_cache_type = <%= @query_type %>
+query_cache_limit = <%= @query_limit %>M
+join_buffer_size = <%= @join_buffer_size %>
+thread_cache_size = <%= @thread_cache_size %>
+read_rnd_buffer_size = <%= @read_rnd_buffer_size %>
+read_buffer_size = <%= @read_buffer_size %>
+sort_buffer_size = <%= @sort_buffer_size %>
+key_buffer_size = <%= @key_buffer_size %>
+
+<%# TODO:
+thread_cache_size = 8
+myisam_sort_buffer_size = 64M
+read_rnd_buffer_size = 8M
+read_buffer_size = 2M
+sort_buffer_size = 2M
+table_open_cache = 1024
+max_allowed_packet = 32M
+key_buffer_size = 384M
+tmp_table_size = 2G
+max_heap_table_size = 512M %>
+# Innodb Parameters
+innodb_file_per_table = <%= @innodb_f_p_table %>
+innodb_buffer_pool_size = <%= @innodb_p_size %>M
+innodb_buffer_pool_instances = <%= @innodb_p_instances %>
+<%# innodb_log_file_size = 2G
+innodb_buffer_pool_instances = 25 %>
+innodb-ft-min-token-size = <%= @innodb_ft_min_token_size %>
+innodb_ft_enable_stopword = <%= @innodb_ft_enable_stopword %>
+ft_min_word_len =  <%= @ft_min_word_len %>
+ft_stopword_file = <%= @ft_stopword_file %>
+
+# Extra Parameter
+# Skip reverse DNS lookup of clients
+skip-name-resolve
+
+[mysqld_safe]
+log-error=/var/log/mariadb/mariadb.log
+pid-file=/var/run/mariadb/mariadb.pid
+
+!includedir /etc/my.cnf.d
