@@ -39,7 +39,7 @@ describe 'magento::default' do
       expect(chef_run).to add_yum_repository('remi-safe')
     end
     it 'remi-php73 present' do
-      expect(chef_run).to add_yum_repository('remi-php73')
+      expect(chef_run).to add_yum_repository('remi-php72')
     end
     it 'nginx present' do
       expect(chef_run).to add_yum_repository('nginx-stable')

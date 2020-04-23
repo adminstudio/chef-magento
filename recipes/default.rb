@@ -157,7 +157,7 @@ template '/etc/csf/csf.conf' do
 end
 
 service 'csf' do
-  action %i[start enable]
+  action %i(start enable)
   notifies :run, 'execute[yum update -y]', :immediately
   notifies :notify, 'slack_notify[csf_installed]', :immediately
 end
@@ -330,7 +330,7 @@ template '/etc/my.cnf' do
 end
 
 service 'mariadb' do
-  action %i[start enable]
+  action %i(start enable)
 end
 
 execute 'mkdir /opt/scripts' do

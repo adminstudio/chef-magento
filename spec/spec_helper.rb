@@ -5,6 +5,6 @@ require 'chefspec/policyfile'
 
 RSpec.configure do |config|
   config.color = true
-  config.formatter = :documetation
+  config.formatter = :documentation
   config.log_level = :error
 end
