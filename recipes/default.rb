@@ -10,7 +10,7 @@ host_name = node['fqdn']
 # Update the system
 slack_notify 'begin_provision' do
   message "The provision start in Server #{host_name}"
-  webhook_url 'https://hooks.slack.com/services/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'
+  webhook_url $CHEF_SLACK_WEBHOOK
 end
 
 execute 'yum update -y' do
@@ -84,8 +84,15 @@ yum_repository 'nginx-stable' do
   notifies :run, 'execute[yum update -y]', :immediately
 end
 
-%w[perl unzip net-tools perl-libwww-perl perl-LWP-Protocol-https perl-GDGraph git].each do |pre|
-  yum_package pre do
+%w[perl unzip net-tools perl-libwww-perl perl-LWP-Protocol-https perl-GDGraph git].each do |deps|
+  yum_package deps do
+    action :install
+    # notifies :notify, 'slack_notify[end_preparation]', :immediately
+  end
+end
+
+%w[perl unzip net-tools perl-libwww-perl perl-LWP-Protocol-https perl-GDGraph git].each do |perlp|
+  yum_package perlp do
     action :install
     notifies :notify, 'slack_notify[end_preparation]', :immediately
   end
