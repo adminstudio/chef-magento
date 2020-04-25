@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+  customize:
+    cpus: 2
 
 ## The forwarded_port port feature lets you connect to ports on the VM guest via
 ## localhost on the host.
@@ -33,4 +35,5 @@ suites:
         - test/integration/default
         # attributes:
           # kernel_modules_disabled: 1
+    # attributes: { slack_webhook: "https://studioservers.slack.com/services/BU75QKYH3" }
     attributes:

@@ -12,9 +12,10 @@ name 'magento'
 default_source :supermarket
 
 # run_list: chef-client will run these recipes in the order specified.
-run_list 'magento::default', 'os-hardening'
+# run_list 'magento::default', 'os-hardening'
+run_list 'magento::default'
 
 # Specify a custom source for a single cookbook:
 cookbook 'magento', path: '.'
-cookbook 'chef_slack', '~> 3.1.2', :supermarket
-cookbook 'os-hardening', github: 'dev-sec/chef-os-hardening', branch: 'master'
+# cookbook 'chef_slack', '~> 3.1.2', :supermarket
+# cookbook 'os-hardening', github: 'dev-sec/chef-os-hardening', branch: 'master'
